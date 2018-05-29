@@ -1,67 +1,54 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
-#include <string>
 
 using namespace cv;
 using namespace std;
 
 int brightness_video(string path)
 {
-	//open the video file for reading
-
+	//Ouvre la video choisie (selon le chemin)
 	VideoCapture cap(path);
 
 
-	// if not success, exit program
+	//En cas d'impossibilité d'ouvrir la vidéo, il y a un message d'erreur
 	if (!cap.isOpened()) {
 		cout << "Error opening video stream or file" << endl;
 		return -1;
 	}
 
-	//Defining window names
+	//Nom de la fenetre dans laquelle s'affichera la vidéo
+	//namedWindow("Original image", WINDOW_AUTOSIZE);
+	namedWindow("Mofified image", WINDOW_AUTOSIZE);
 
-	namedWindow("Original image", WINDOW_AUTOSIZE);
-	namedWindow("Frames increased by 50", WINDOW_AUTOSIZE);
-	namedWindow("Frames increased by 100", WINDOW_AUTOSIZE);
-	namedWindow("Frames decreased by 50", WINDOW_AUTOSIZE);
-	namedWindow("Frames decreased by 100", WINDOW_AUTOSIZE);
+
+	int iBright_video = 150; // Valeur ou se trouve le curseur avant la modification de l'utilisateur
+
+							 //Création de la trackbar
+	createTrackbar("Brightness Trackbar", "Image", &iBright_video, 300); // Valeur max : 300
+
 
 	while (true)
 	{
-		Mat frame, frameI50, frameI100, frameD50, frameD100;
-		// read a new frame from video
+		Mat frame, newFrame;
+		// Lis une nouvelle frame de la vidéo
 		cap >> frame;
 
-		//Breaking the while loop at the end of the video
-
+		//Stop la boucle whike lorque la vidéo est terminée
 		if (frame.empty())
 		{
 			break;
 		}
 
-		//increase the brightness by 50
-		frame.convertTo(frameI50, frame.type(), 1, 50);
 
-		//increase the brightness by 100
-		frame.convertTo(frameI100, frame.type(), 1, 100);
+		//increase the brightness by iBright_video 
+		frame.convertTo(newFrame, frame.type(), 1, iBright_video - 150); // permet de faire les valeurs <0
 
-		//decrease the brightness by 50
-		frame.convertTo(frameD50, frame.type(), 1, -50);
 
-		//decrease the brightness by 100
-		frame.convertTo(frameD100, frame.type(), 1, -100);
+																		 //Montre les frames dans la fenetre créée
+																		 //imshow("Original image", frame);
+		imshow("Modified image", newFrame);
 
-		//Show above frames inside the created windows.
-		imshow("Original image", frame);
-		imshow("Frames increased by 50", frameI50);
-		imshow("Frames increased by 100", frameI100);
-		imshow("Frames decreased by 50", frameD50);
-		imshow("Frames decreased by 100", frameD100);
-
-		//wait for for 10 ms until any key is pressed.
-		//If the 'Esc' key is pressed, break the while loop.
-		//If the any other key is pressed, continue the loop
-		//If any key is not pressed withing 10 ms, continue the loop
+		//wait for for 10 ms until any key is pressed. Attends 10 ms jusqu'à ce qu'il y ait une touche appuyée. Si la touche "Esc" est appuyé, la boucle while ets stoppée pour tout autre touche la boucle continue 
 		if (waitKey(10) == 27)
 		{
 			cout << "Esc key is pressed by user. Stoppig the video" << endl;

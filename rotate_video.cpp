@@ -12,12 +12,12 @@ int rotate_video(string path)
 
 	// if not success, exit program
 	if (!cap.isOpened()) {
-	cout << "Error opening video stream or file" << endl;
-	return -1;
+		cout << "Error opening video stream or file" << endl;
+		return -1;
 	}
 
 	//define original and rotate window name
-	namedWindow("Original image", WINDOW_AUTOSIZE);
+	//namedWindow("Original image", WINDOW_AUTOSIZE);
 	namedWindow("Rotated video", WINDOW_AUTOSIZE);
 
 
@@ -44,8 +44,7 @@ int rotate_video(string path)
 		}
 
 		//show both videos
-		imshow("Original video", frame);
-		//imshow("Rotated video", r_video);
+		//imshow("Original video", frame);
 
 		//get the affine transformation matrix 2D
 		M = getRotationMatrix2D(center, iAngle, 1); 

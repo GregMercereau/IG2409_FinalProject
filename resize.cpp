@@ -1,9 +1,9 @@
 #include <opencv2/opencv.hpp>
+#include <iostream>
 #include <string>
 
-
-using namespace std;
 using namespace cv;
+using namespace std;
 
 
 int resize(string path)

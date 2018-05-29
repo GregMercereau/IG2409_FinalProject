@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <string>
 
 using namespace cv;
 using namespace std;
@@ -58,7 +59,7 @@ int contrast_video(string path)
 		frame.convertTo(frameD025, frame.type(), 0.25, 1);
 
 		//Show above images inside the created windows.
-		imshow("Original video frame);
+		imshow("Original video frame", frame);
 		imshow("Frames increased by 50", frameI2);
 		imshow("Frames increased by 100", frameI4);
 		imshow("Frames decreased by 50", frameD025);

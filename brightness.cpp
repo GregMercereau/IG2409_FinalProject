@@ -1,10 +1,11 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <string>
 
 using namespace cv;
 using namespace std;
 
-brightness(string path)
+int brightness(string path)
 {
 	// Read the image file
 	Mat source, new_Image; // new_Image is where the new picture is stored
@@ -22,7 +23,7 @@ brightness(string path)
 	}
 
 	//L'utilisateur entre les valeurs du paramètre de luminosité : nombre positif pour augmenter, nbre négatif pour diminuer 
-	cout << "Entrer les valeurs de vos paramètres :\n" << endl;
+	cout << "Entrer la valeur du parametre de luminosité (>0 pour augmenter, <0 pour diminuer)\n" << endl;
 	//cout << "Number 1 :\n" << endl;
 	cin >> value;
 

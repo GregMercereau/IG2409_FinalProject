@@ -1,5 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
+#include <string>
 
 using namespace cv;
 using namespace std;
@@ -18,8 +19,8 @@ int contrast(string path)
 		return -1;
 	}
 
-	//L'utilisateur entre les valeurs du paramètre de luminosité : nombre positif pour augmenter, nbre négatif pour diminuer 
-	cout << "Entrer les valeurs de vos paramètres :\n" << endl;
+	//L'utilisateur entre les valeurs du paramètre de contraste : nombre positif pour augmenter, nbre négatif pour diminuer 
+	cout << "Entrer la valeur du parametre de contraste (>0 pour augmenter, <0 pour diminuer)\n" << endl;
 	//cout << "Number 1 :\n" << endl;
 	cin >> value;
 

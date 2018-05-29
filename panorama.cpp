@@ -12,21 +12,15 @@ vector<Mat> images;
 
 
 
-int main(int argc, char* argv[])
+int panorama(string path1, string path2)
 {
 	// Lis une image 
 	Mat img, img2;
-	img = imread("van_gogh.jpg", IMREAD_COLOR);
-	img2 = imread("van_gogh.jpg", IMREAD_COLOR);
+	img = imread(path1, IMREAD_COLOR);
+	img2 = imread(path2, IMREAD_COLOR);
 
-	namedWindow("test", WINDOW_AUTOSIZE);
-	imshow("test", img);
-
-	// Wait for any key stroke
-	waitKey(0);
-
-	//destroy all open windows
-	destroyAllWindows();
+	//namedWindow("Original image", WINDOW_AUTOSIZE);
+	//imshow("Original image", img);
 
 	images.push_back(img); // Ajoute les images lues dans un tableau "images"
 	images.push_back(img2);
@@ -44,8 +38,8 @@ int main(int argc, char* argv[])
 	}
 
 
-	namedWindow("Original image", WINDOW_AUTOSIZE);
-	imshow("Original image", pano);
+	namedWindow("Panorama", WINDOW_AUTOSIZE);
+	imshow("Panorama", pano);
 	//imwrite(result_name, pano);
 
 	// Wait for any key stroke

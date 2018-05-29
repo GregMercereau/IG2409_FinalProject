@@ -4,13 +4,15 @@
 using namespace cv;
 using namespace std;
 
-int cannyEdgeDetec(string path) const;
-int brightness(string path) const;
-int contrast(string path) const;
-int resize(string path) const;
-int pano() const;
-int brightness_video(string path) const;
-int contrast_video(string path) const;
-int blur_video(string path) const;
-int gaussian_video(string path) const;
-int rotate_video(string path) const;
+int cannyEdgeDetec(string path);
+int brightness(string path);
+int contrast(string path);
+int resize(string path);
+int pano();
+int brightness_video(string path);
+int contrast_video(string path);
+int blur_video(string path);
+int gaussian_video(string path);
+int rotate_video(string path);
+int erosiondilatation(string path);
+int panorama(string path1, string path2);

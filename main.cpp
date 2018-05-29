@@ -10,7 +10,7 @@ using namespace std;
 int main(int argc, char** argv)
 {		
 	int select;	
-	string path;
+	string path, path1, path2;
 	size_t length = path.size();
 	
 	printf("Quel est le chemin vers votre fichier ?\n");
@@ -58,12 +58,12 @@ int main(int argc, char** argv)
 	else
 	{
 		
-		printf("Que voulez-vous faire avec votre image ? \n(Dilatation/Erosion = 1, \nResizing = 2, \nLighten/Darken = 3, \nPanorama = 4, \nCanny Edge Detection = 5)\n");
+		printf("Que voulez-vous faire avec votre image ? \n(Dilatation/Erosion = 1, \nResizing = 2, \nBrightness = 3, \nPanorama = 4, \nCanny Edge Detection = 5)\n");
 		cin >> select;
 		
 		if(select == 1)
 		{		
-			//DilatErosion(path);
+			erosiondilatation(path);
 			printf("The image has been dilatated/erosed.\n");
 		}
 
@@ -75,13 +75,16 @@ int main(int argc, char** argv)
 
 		if(select == 3)
 		{		
-			//lightenDarken(path);
+			brightness(path);
 			printf("The image has been ligthened/darkened.\n");
 		}
 		
 		if(select == 4)
 		{		
-			//Pano();
+			path1 = path;			
+			printf("Quel est le chemin de votre 2e image ?\n");
+			cin >> path2;
+			panorama(path1, path2);
 			printf("Panorama done.\n");
 		}
 

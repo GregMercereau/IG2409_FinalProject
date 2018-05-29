@@ -7,55 +7,47 @@ using namespace std;
 
 int gaussian_video(string path)
 {
-	//open the video file for reading
 	VideoCapture cap(path);
 
-		// if not success, exit program
 	if (!cap.isOpened()) {
 		cout << "Error opening video stream or file" << endl;
 		return -1;
 	}
 
+	namedWindow("Blurred frame - Gaussian", WINDOW_AUTOSIZE);
+	
+	//Trackbar
+	int iSize = 0;
+	createTrackbar("Gaussian blur", "Blurred frame - Gaussian", &iSize, 50);
 
+	while (true)
+	{
+		Mat frame, blurredFrame;
 
-		//Define names of the window
-		// Create a window with above names
-		namedWindow("Original video", WINDOW_AUTOSIZE);
-		namedWindow("Blured frames -  Gaussian", WINDOW_AUTOSIZE);
+		bool bSuccess = cap.read(frame);
 
-
-		// read a new frame from video
-		while (true)
+		//Fin du while a la fin de la video
+		if (!bSuccess)
 		{
-			Mat frame, bluredFrame;
-			cap >> frame;
+			cout << "Cannot read the frame from video file" << endl;
+			break;
+		}
 
-			//Breaking the while loop at the end of the video
+		if(iSize%2 == 0)	//Les arguments de Size() doivent etre impairs, donc on agit en consequence
+		{
+			iSize = iSize+1;	//Si iSize pair, on ajoute 1
+		}
+		GaussianBlur(frame, blurredFrame, Size(iSize,iSize), 0, 0, BORDER_DEFAULT);	//Sinon iSize ne change pas
 
-			if (frame.empty())
-			{
-				break;
-			}
+		imshow("Blurred frame - Gaussian", blurredFrame);
 
-			//Blur the frame with 5x5 Gaussian kernel
-			GaussianBlur(frame, bluredFrame, Size(3, 3), 0, 0, BORDER_DEFAULT);
-
-
-		//show the frames in the created windows
-		imshow("Original video", frame);
-		imshow("Blured frames - Gaussian ", bluredFrame);
-
-		//wait for for 10 ms until any key is pressed.
-		//If the 'Esc' key is pressed, break the while loop.
-		//If the any other key is pressed, continue the loop
-		//If any key is not pressed withing 10 ms, continue the loop
 		if (waitKey(10) == 27)
 		{
 			cout << "Esc key is pressed by user. Stoppig the video" << endl;
 			break;
 		}
 
-		}
+	}
 
-		return 0;
+	return 0;
 }

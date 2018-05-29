@@ -1,13 +1,13 @@
-/*#include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace cv;
 using namespace std;
 
-int main(int argc, char** argv)
+int contrast_video(string path)
 {
 	//open the video file for reading
-	VideoCapture cap("chaplin.mp4");
+	VideoCapture cap(path);
 
 
 	// if not success, exit program
@@ -79,4 +79,3 @@ int main(int argc, char** argv)
 
 	return 0;
 }
-*/

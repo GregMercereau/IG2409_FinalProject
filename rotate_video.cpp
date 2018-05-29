@@ -1,17 +1,15 @@
-/*//#include "opencv2/highgui/highgui.hpp"
-//#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 #include <opencv2/opencv.hpp>
 #include <iostream>
 
 using namespace cv;
 using namespace std;
 
-int main(int argc, char* argv[])
+int rotate_video(string path)
 {
 	// open the video file for reading
-	VideoCapture cap("chaplin.mp4");
-	
-
+	VideoCapture cap(path);
 
 	// if not success, exit program
 	if (!cap.isOpened()) {
@@ -32,7 +30,6 @@ int main(int argc, char* argv[])
 
 	while (true)
 	{
-
 
 		// read a new frame from video
 		Mat frame, r_video, M;
@@ -73,4 +70,3 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-*/

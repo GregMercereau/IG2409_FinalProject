@@ -7,47 +7,46 @@ using namespace std;
 
 int brightness(string path)
 {
-	// Read the image file
-	Mat source, new_Image; // new_Image is where the new picture is stored
-	int value; 
 
+	Mat source, new_Image; 
+	//int value; 
 
 	source = imread(path, IMREAD_COLOR);
 
-
-	// Check for failure
 	if (source.empty())
 	{
-	printf(" No image data \n ");
+	printf("No image data \n ");
 	return -1;
 	}
+	
+	namedWindow("Image", WINDOW_AUTOSIZE);
 
-	//L'utilisateur entre les valeurs du paramètre de luminosité : nombre positif pour augmenter, nbre négatif pour diminuer 
-	cout << "Entrer la valeur du parametre de luminosité (>0 pour augmenter, <0 pour diminuer)\n" << endl;
+	
+
+	//cout << "Entrer la valeur du parametre de luminosité (>0 pour augmenter, <0 pour diminuer)\n" << endl;
 	//cout << "Number 1 :\n" << endl;
-	cin >> value;
+	//cin >> value;
+	
+	int iBright = 150;
 
-	//Changement de la luminosité 
-	source.convertTo(new_Image, source.type(), 1, value);
+	createTrackbar("Brightness Trackbar", "Image", &iBright, 300);
 
+	while(true)
+	{
+		
+		//Changement de la luminosité 
+		source.convertTo(new_Image, source.type(), 1, iBright-150);
 
+		imshow("Image", new_Image);
 
-	//Defining window names for above images
-	//Create and open windows for above images
-	namedWindow("Original image", WINDOW_AUTOSIZE);
-	namedWindow("Brightness modified image", WINDOW_AUTOSIZE);
+		if (waitKey(10) == 27)
+		{
+			cout << "Esc key is pressed by user. Closing the image" << endl;
+			break;
+		}
 
-
-	//Show above images inside the created windows.
-	imshow("Original image", source);
-	imshow("Brightness modified image", new_Image);
-
-
-
-	// Wait for any key stroke
-	waitKey(0);
-	//destroy all open windows
-	destroyAllWindows();
+	}
+	
 
 	return 0;
 }

@@ -6,11 +6,9 @@ using namespace std;
 
 int cannyEdgeDetec(string path);
 int brightness(string path);
-int contrast(string path);
 int resize(string path);
 int pano();
 int brightness_video(string path);
-int contrast_video(string path);
 int blur_video(string path);
 int gaussian_video(string path);
 int rotate_video(string path);

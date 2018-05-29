@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	
 	if(found==path.size()-1)
 	{
-		printf("Que voulez vous faire avec votre vidéo ? \n(Brightness = 1, \nContrast = 2, \nBlur = 3, \nGaussian = 4, \nRotation = 5)\n");
+		printf("Que voulez vous faire avec votre vidéo ? \nBrightness = 1\nBlur = 2\nGaussian blur = 3\nRotation = 4\n");
 
 		cin >> select;
 
@@ -31,24 +31,18 @@ int main(int argc, char** argv)
 		}
 
 		if(select == 2)
-		{		
-		contrast_video(path);
-		printf("The video has been contrasted.\n");
-		}
-
-		if(select == 3)
 		{	
 		blur_video(path);
 		printf("The video has been blurred.\n");
 		}
 
-		if(select == 4)
+		if(select == 3)
 		{		
 		gaussian_video(path);
 		printf("The video has been Gaussian blurred.\n");
 		}
 
-		if(select == 5)
+		if(select == 4)
 		{		
 		rotate_video(path);
 		printf("The video has been rotated.\n");
@@ -58,7 +52,7 @@ int main(int argc, char** argv)
 	else
 	{
 		
-		printf("Que voulez-vous faire avec votre image ? \n(Dilatation/Erosion = 1, \nResizing = 2, \nBrightness = 3, \nPanorama = 4, \nCanny Edge Detection = 5)\n");
+		printf("Que voulez-vous faire avec votre image ? \nDilatation/Erosion = 1\nResizing = 2\nBrightness = 3\nPanorama = 4\nCanny Edge Detection = 5\n");
 		cin >> select;
 		
 		if(select == 1)

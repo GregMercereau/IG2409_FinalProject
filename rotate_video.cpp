@@ -43,15 +43,15 @@ int rotate_video(string path)
 			break;
 		}
 
-		//show the two video
+		//show both videos
 		imshow("Original video", frame);
 		//imshow("Rotated video", r_video);
 
 		//get the affine transformation matrix 2D
 		M = getRotationMatrix2D(center, iAngle, 1); 
 
-			// Rotate the image using warpAffine
-			warpAffine(frame, r_video, M, r_video.size());
+		// Rotate the image using warpAffine
+		warpAffine(frame, r_video, M, r_video.size());
 
 		//show the rotate frame
 		imshow("Rotated video", r_video);
@@ -61,7 +61,7 @@ int rotate_video(string path)
 		//wait for 'esc' key press for 30 ms. If 'esc' key is pressed, break loop
 		if (waitKey(10) == 27)
 		{
-			cout << "Esc key is pressed by user. Stoppig the video" << endl;
+			cout << "Esc key is pressed by user. Stopping the video" << endl;
 			break;
 		}
 

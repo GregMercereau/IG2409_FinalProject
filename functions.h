@@ -14,3 +14,4 @@ int gaussian_video(string path);
 int rotate_video(string path);
 int erosiondilatation(string path);
 int panorama(string path1, string path2);
+int cannyEdgeDetec_video(string path);

@@ -63,8 +63,3 @@ int cannyEdgeDetec_video(string path)
 	}
 	return 0; 
 }
-
-int main(int argc, char* argv[])
-{
-	cannyEdgeDetec_video("cup.mp4");
-}

@@ -1,7 +1,6 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <string>
-#include <cstddef>
 #include "functions.h"
 
 using namespace cv;
@@ -11,16 +10,15 @@ int main(int argc, char** argv)
 {		
 	int select;	
 	string path, path1, path2;
-	size_t length = path.size();
 	
 	printf("Quel est le chemin vers votre fichier ?\n");
 	cin >> path;
 
-	size_t found = path.find_last_of('4');
+	size_t found = path.find_last_of('4');	//Si le path finit par "4", nous en deduisons que le fichier est un .mp4
 	
 	if(found==path.size()-1)
 	{
-		printf("Que voulez vous faire avec votre vidéo ? \nBrightness = 1\nBlur = 2\nGaussian blur = 3\nRotation = 4\n");
+		printf("Que voulez vous faire avec votre vidéo ? \nBrightness = 1\nBlur = 2\nGaussian blur = 3\nRotation = 4\nCanny Edge Detection = 5\n");
 
 		cin >> select;
 

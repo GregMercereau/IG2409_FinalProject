@@ -18,7 +18,7 @@ int main(int argc, char** argv)
 	
 	if(found==path.size()-1)
 	{
-		printf("Que voulez vous faire avec votre vidéo ? \nBrightness = 1\nBlur = 2\nGaussian blur = 3\nRotation = 4\nCanny Edge Detection = 5\n");
+		printf("Que voulez vous faire avec votre vidéo ? \nLighten/Darken = 1\nBlur = 2\nGaussian blur = 3\nRotation = 4\nCanny Edge Detection = 5\n");
 
 		cin >> select;
 
@@ -57,7 +57,7 @@ int main(int argc, char** argv)
 	else
 	{
 		
-		printf("Que voulez-vous faire avec votre image ? \nDilatation/Erosion = 1\nResizing = 2\nBrightness = 3\nPanorama = 4\nCanny Edge Detection = 5\n");
+		printf("Que voulez-vous faire avec votre image ? \nDilatation/Erosion = 1\nResizing = 2\nLighten/Darken = 3\nPanorama = 4\nCanny Edge Detection = 5\n");
 		cin >> select;
 		
 		if(select == 1)

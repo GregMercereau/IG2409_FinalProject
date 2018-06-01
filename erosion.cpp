@@ -17,29 +17,38 @@ int erosiondilatation(string path)
 	
 	Mat element = getStructuringElement(cv::MORPH_CROSS, Point(size, size));
 
-	//Apply erosion or dilation on the image
-
+	namedWindow( "Result window", CV_WINDOW_AUTOSIZE );  
+	
 	int choice;
 	cout<<"Entrez 1 pour érosion ou 2 pour dilatation"<<endl;
 	cin>>choice;
-	switch (choice){      
-		case 1 :
-		erode(image,dst,element); 
-	
-		break;
-		case 2 :
-		dilate(image,dst,element);
-	
-		break;
-		default: cout <<"entrer 1 ou 2"<<endl; 
-		break;
-	}
 
-	namedWindow( "Display window", CV_WINDOW_AUTOSIZE );  
-	imshow( "Display window", image );                 
+	//Apply erosion or dilation on the image
 
-	namedWindow( "Result window", CV_WINDOW_AUTOSIZE );   
-	imshow( "Result window", dst );
+	while(true)
+	{
+		switch (choice)
+		{      
+			case 1 :
+			erode(image,dst,element); 
 
-	waitKey(0);                                        
+			break;
+			case 2 :
+			dilate(image,dst,element);
+
+			break;
+			default: cout <<"entrer 1 ou 2"<<endl; 
+			break;
+		}
+
+		imshow( "Result window", dst );
+		
+		if (waitKey(10) == 27)
+		{
+			cout << "Esc key is pressed by user. Closing the image" << endl;
+			break;
+		}
+
+	}  
+	return 0;                                      
 }

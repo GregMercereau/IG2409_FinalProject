@@ -18,10 +18,12 @@ int resize(string path)
 	double scaleX, scaleY; 
 
 	//L'utilisateur entre les valeurs des paramètres 
-	cout << "Entrer les valeurs de vos paramètres :\n" << endl;
-	//cout << "Number 1 :\n" << endl;
+	cout << "Entrer les valeurs de vos parametres :\n" << endl;
+
+	cout << "Facteur horizontal (< 1 pour diminuer la taille, > 1 sinon) :\n" << endl;
 	cin >> scaleX;
-	//cout << "Number 2 :\n" << endl;
+
+	cout << "Facteur vertical (< 1 pour diminuer la taille, > 1 sinon) :\n" << endl;
 	cin >> scaleY;
 
 	// Diminution de la taille de l'image : Choix des facteurs -> Diminution si inf à 1 et Augmentation si sup à 1

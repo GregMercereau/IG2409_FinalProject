@@ -47,6 +47,13 @@ int main(int argc, char** argv)
 		rotate_video(path);
 		printf("The video has been rotated.\n");
 		}
+
+		if (select == 5)
+		{
+			cannyEdgeDetec_video(path);
+			printf("Canny Edge Detection done on the video.\n");
+		}
+
 	}
 	
 	else
@@ -85,7 +92,7 @@ int main(int argc, char** argv)
 		if(select == 5)
 		{		
 			cannyEdgeDetec(path);
-			printf("Canny Edge Detection done.\n");
+			printf("Canny Edge Detection done on the image.\n");
 		}
 	}
 }

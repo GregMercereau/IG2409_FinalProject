@@ -18,7 +18,7 @@ int gaussian_video(string path)
 	
 	//Trackbar
 	int iSize = 0;
-	createTrackbar("Gaussian blur", "Blurred frame - Gaussian", &iSize, 50);
+	createTrackbar("Gaussian blur", "Blurred frame - Gaussian", &iSize, 50);	//Valeurs entre 0 et 50
 
 	while (true)
 	{
@@ -29,7 +29,7 @@ int gaussian_video(string path)
 		//Fin du while a la fin de la video
 		if (!bSuccess)
 		{
-			cout << "Cannot read the frame from video file" << endl;
+			cout << "Reached the end of the video" << endl;
 			break;
 		}
 
@@ -37,13 +37,15 @@ int gaussian_video(string path)
 		{
 			iSize = iSize+1;	//Si iSize pair, on ajoute 1
 		}
-		GaussianBlur(frame, blurredFrame, Size(iSize,iSize), 0, 0, BORDER_DEFAULT);	//Sinon iSize ne change pas
+
+		GaussianBlur(frame, blurredFrame, Size(iSize,iSize), 0, 0, BORDER_DEFAULT);	//Si iSize impair, pas de changement
 
 		imshow("Blurred frame - Gaussian", blurredFrame);
-
+	
+		//Condition pour fermer la vidéo quand l'utilisateur appuie sur la touche esc
 		if (waitKey(10) == 27)
 		{
-			cout << "Esc key is pressed by user. Stoppig the video" << endl;
+			cout << "Esc key is pressed by user. Stopping the video" << endl;
 			break;
 		}
 

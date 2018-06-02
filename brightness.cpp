@@ -8,11 +8,11 @@ using namespace std;
 int brightness(string path)
 {
 
-	Mat source, new_Image; 
-	//int value; 
+	Mat source, new_Image;  
 
 	source = imread(path, IMREAD_COLOR);
 
+	//Message d'erreur s'il y a un problème avec le fichier source entré 
 	if (source.empty())
 	{
 	printf("No image data \n ");
@@ -21,12 +21,7 @@ int brightness(string path)
 	
 	namedWindow("Image", WINDOW_AUTOSIZE);
 
-	
-
-	//cout << "Entrer la valeur du parametre de luminosité (>0 pour augmenter, <0 pour diminuer)\n" << endl;
-	//cout << "Number 1 :\n" << endl;
-	//cin >> value;
-	
+	//Trackbar	
 	int iBright = 150;
 
 	createTrackbar("Brightness Trackbar", "Image", &iBright, 300);
@@ -39,9 +34,21 @@ int brightness(string path)
 
 		imshow("Image", new_Image);
 
+		//Condition pour fermer l'image et l'enregistrer (ou non) quand l'utilisateur appuie sur la touche esc
 		if (waitKey(10) == 27)
 		{
 			cout << "Esc key is pressed by user. Closing the image" << endl;
+			cout << "Do you want to save your modifications ? (Yes : 1 ; No : 2)\n" << endl;
+
+			int savingChoice;
+			cin >> savingChoice;
+
+			if (savingChoice == 1)
+			{ 
+				imwrite("Saved_Image.jpg", new_Image);
+				cout << "Your image has been saved successfully." << endl;
+			}
+
 			break;
 		}
 

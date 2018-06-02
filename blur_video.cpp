@@ -20,8 +20,6 @@ int blur_video(string path)
 	int iSize = 0;
 	createTrackbar("Blur", "Blurred video", &iSize, 50);
 
-	// read a new frame from video
-
 	while (true)
 	{
 		Mat frame, blurredFrame;
@@ -31,9 +29,11 @@ int blur_video(string path)
 		//Fin du while a la fin de la video
 		if (!bSuccess)
 		{
-			cout << "Cannot read the frame from video file" << endl;
+			cout << "Reached the end of the video\n" << endl;
 			break;
 		}
+		
+		//Floutage de la video 
 
 		blur(frame, blurredFrame, Size(iSize+2,iSize+2), Point(-1, 1), BORDER_DEFAULT);	//iSize+2 pour eviter un bug
 
@@ -41,11 +41,11 @@ int blur_video(string path)
 
 		if (waitKey(10) == 27)
 		{
-			cout << "Esc key is pressed by user. Stoppig the video" << endl;
+			cout << "Esc key is pressed by user. Stopping the video" << endl;
 			break;
 		}
 	}
 
-		return 0;
+	return 0;
 
 }

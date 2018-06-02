@@ -21,8 +21,7 @@ int cannyEdgeDetec_video(string path)
 	int threshold1 = 250; // Valeur ou se trouve le curseur avant la modification de l'utilisateur
 	int threshold2 = 50; // Valeur ou se trouve le curseur avant la modification de l'utilisateur
 
-	//Nom de la fenetre dans laquelle s'affichera la vidéo
-	//namedWindow("Original image", WINDOW_AUTOSIZE);
+	//Nom de la fenetre dans laquelle s'affichera la vidéo modifiée
 	namedWindow("Modified frame", WINDOW_AUTOSIZE);
 
 	//Création de la trackbar
@@ -33,13 +32,11 @@ int cannyEdgeDetec_video(string path)
 	{
 		Mat frame, newFrame;
 		bool bSuccess = cap.read(frame);
-		// Lis une nouvelle frame de la vidéo
-		//cap >> frame;
 
 		//Stop la boucle while lorque la vidéo est terminée
 		if (!bSuccess)
 		{
-			cout << "Cannot read the frame from video file" << endl;
+			cout << "Reached the end of the video" << endl;
 			break;
 		}
 
@@ -48,14 +45,13 @@ int cannyEdgeDetec_video(string path)
 		Canny(frame, newFrame, threshold1, threshold2, 3);
 
 
-		//Montre les frames dans la fenetre créée
-		//imshow("Original image", frame);
+		//Affichage des frames dans la fenetre créée
 		imshow("Modified frame", newFrame);
 
-		//Attends 10 ms jusqu'à ce qu'il y ait une touche appuyée. Si la touche "Esc" est appuyé, la boucle while est stoppée, pour toute autre touche la boucle continue 
+		//Condition pour fermer la vidéo quand l'utilisateur appuie sur la touche esc 
 		if (waitKey(10) == 27)
 		{
-			cout << "Esc key is pressed by user. Stoppig the video" << endl;
+			cout << "Esc key is pressed by user. Stopping the video" << endl;
 			break;
 		}
 

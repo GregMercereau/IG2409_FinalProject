@@ -7,57 +7,45 @@ using namespace std;
 
 int rotate_video(string path)
 {
-	// open the video file for reading
+
 	VideoCapture cap(path);
 
-	// if not success, exit program
 	if (!cap.isOpened()) {
 		cout << "Error opening video stream or file" << endl;
 		return -1;
 	}
 
-	//define original and rotate window name
-	//namedWindow("Original image", WINDOW_AUTOSIZE);
 	namedWindow("Rotated video", WINDOW_AUTOSIZE);
 
-
+	//Trackbar
 	int iAngle = 180;
 
-	//create track bar
-	createTrackbar("Rotate", "Rotated video", &iAngle, 360);
+	createTrackbar("Rotate", "Rotated video", &iAngle, 360);	//Valeurs entre 0 et 360
 
 
 	while (true)
 	{
 
-		// read a new frame from video
 		Mat frame, r_video, M;
 		bool bSuccess = cap.read(frame);
 		Point2f center(frame.cols / 2, frame.rows / 2);
 
-
-		//if not success, break loop
 		if (!bSuccess)
 		{
-			cout << "Cannot read the frame from video file" << endl;
+			cout << "Reached the end of the video" << endl;
 			break;
 		}
 
-		//show both videos
-		//imshow("Original video", frame);
-
-		//get the affine transformation matrix 2D
+		//Obtention de la matrice 2D de transformation affine
 		M = getRotationMatrix2D(center, iAngle, 1); 
 
-		// Rotate the image using warpAffine
+		//Rotation de la vidéo grâce à warpAffine
 		warpAffine(frame, r_video, M, r_video.size());
 
-		//show the rotate frame
+		//Affichage de la vidéo modifiée
 		imshow("Rotated video", r_video);
 
-
-
-		//wait for 'esc' key press for 30 ms. If 'esc' key is pressed, break loop
+		//Condition pour fermer la vidéo quand l'utilisateur appuie sur la touche esc
 		if (waitKey(10) == 27)
 		{
 			cout << "Esc key is pressed by user. Stopping the video" << endl;

@@ -53,7 +53,6 @@ int brightness(string path)
 		}
 
 	}
-	
 
 	return 0;
 }
